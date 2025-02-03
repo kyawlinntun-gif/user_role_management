@@ -7,4 +7,4 @@ $database = new Database();
 $pdo = $database->getConnection();
 
 $migrationManager = new MigrationManager($pdo);
-$migrationManager->migrate();
+$migrationManager->refresh();
