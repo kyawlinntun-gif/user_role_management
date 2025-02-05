@@ -13,19 +13,18 @@ Installation Steps
 Clone the project from GitHub:
 git clone https://github.com/kyawlinntun-gif/user_role_management.git
 
-<!-- 2. Create a database
+2. Create a database
 Create a new database in MySQL (or your preferred database server).
-Update the .env file in the project root to include your database connection settings:
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=your_database_name
-DB_USERNAME=your_database_username
-DB_PASSWORD=your_database_password
+Update the config/config.php file in the project root to include your database connection settings:
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'user_role_management');
+define('DB_USER', 'root');
+define('DB_PASS', '');
 
 3. Migrate the database
-Run the migration command to set up the required database tables:
-php artisan migrate -->
+Run the following command to set up and unset up the required database tables:
+php migrate_table.php
+php refresh_migrations.php
 
 4. Serve the application
 Start the development server:

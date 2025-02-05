@@ -14,3 +14,10 @@ if(!function_exists('view')) {
         require $viewFile;
     }
 }
+if (!function_exists('assets')) {
+    function assets($path)
+    {
+        // Ensure path is relative to the public folder
+        return '/' . ltrim($path, '/');
+    }
+}
