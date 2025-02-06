@@ -20,7 +20,7 @@ return [
         '/admin' => [
             'action' => 'App\Controllers\\Admin\\HomeController@index',
             'middleware' => [
-                'RoleMiddleware' => ['Admin']
+                'RoleMiddleware' => ['admin']
             ]
         ]
     ],

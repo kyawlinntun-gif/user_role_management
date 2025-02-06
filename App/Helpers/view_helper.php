@@ -21,3 +21,12 @@ if (!function_exists('assets')) {
         return '/' . ltrim($path, '/');
     }
 }
+if (!function_exists('getValidationError')) {
+    function getValidationError($field, $context) {
+        if (isset($_SESSION['errors'][$context][$field])) {
+            $message = $_SESSION['errors'][$context][$field][0];
+            return htmlspecialchars($message);
+        }
+        return [];
+    }
+}

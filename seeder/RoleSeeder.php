@@ -11,9 +11,9 @@ class RoleSeeder
   public function run()
   {
     $roles = [
-      ['role_name' => 'Admin', 'description' => 'Administrator with full access'],
-      ['role_name' => 'Editor', 'description' => 'Can edit content'],
-      ['role_name' => 'Viewer', 'description' => 'Can view content']
+      ['role_name' => 'admin', 'description' => 'Administrator with full access'],
+      ['role_name' => 'editor', 'description' => 'Can edit content'],
+      ['role_name' => 'viewer', 'description' => 'Can view content']
     ];
     foreach ($roles as $role) {
       try {

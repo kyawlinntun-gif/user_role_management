@@ -22,23 +22,20 @@
                       <?php unset($_SESSION['email']) ?>
                     <?php endif; ?>>
                 </div>
-                <?php if (isset($_SESSION['errors']['login']['email'])): ?>
-                  <?php foreach ($_SESSION['errors']['login']['email'] as $message): ?>
-                    <span class="alert alert-danger form-control" role="alert">
-                      <?php echo htmlspecialchars($message); ?>
-                    </span>
-                  <?php endforeach; ?>
+                <?php if (getValidationError('email', 'login')): ?>
+                  <span class="alert alert-danger form-control" role="alert">
+                    <?= getValidationError('email', 'login'); ?>
+                    <?php unset($_SESSION['errors']['login']['email']); ?>
+                  </span>
                 <?php endif; ?>
                 <div class="input-group input-group-outline mb-3">
                   <input type="password" class="form-control" name="password" placeholder="Password">
                 </div>
-                <?php if (isset($_SESSION['errors']['login']['password'])): ?>
-                  <?php foreach ($_SESSION['errors']['login']['password'] as $message): ?>
-                    <span class="alert alert-danger form-control" role="alert">
-                      <?php echo htmlspecialchars($message); ?>
-                    </span>
-                  <?php endforeach; ?>
-                  <?php unset($_SESSION['errors']['login']); ?>
+                <?php if (getValidationError('password', 'login')): ?>
+                  <span class="alert alert-danger form-control" role="alert">
+                    <?= getValidationError('password', 'login'); ?>
+                    <?php unset($_SESSION['errors']['login']['password']); ?>
+                  </span>
                 <?php endif; ?>
                 <!-- <div class="form-check form-switch d-flex align-items-center mb-3">
                     <input class="form-check-input" type="checkbox" id="rememberMe" checked>

@@ -29,12 +29,11 @@
                         value="<?= $_SESSION['register']['name']; ?>"
                       <?php endif; ?>>
                   </div>
-                  <?php if (isset($_SESSION['errors']['register']['name'])): ?>
-                    <?php foreach ($_SESSION['errors']['register']['name'] as $message): ?>
-                      <span class="alert alert-danger form-control" role="alert">
-                        <?php echo htmlspecialchars($message); ?>
-                      </span>
-                    <?php endforeach; ?>
+                  <?php if (getValidationError('name', 'register')): ?>
+                    <span class="alert alert-danger form-control" role="alert">
+                      <?= getValidationError('name', 'register'); ?>
+                      <?php unset($_SESSION['errors']['register']['name']); ?>
+                    </span>
                   <?php endif; ?>
                   <div class="input-group input-group-outline mb-3">
                     <input type="email" class="form-control" name="email" placeholder="Email"
@@ -43,33 +42,29 @@
                         <?php unset($_SESSION['register']); ?>
                       <?php endif; ?>>
                   </div>
-                  <?php if (isset($_SESSION['errors']['register']['email'])): ?>
-                    <?php foreach ($_SESSION['errors']['register']['email'] as $message): ?>
-                      <span class="alert alert-danger form-control" role="alert">
-                        <?php echo htmlspecialchars($message); ?>
-                      </span>
-                    <?php endforeach; ?>
+                  <?php if (getValidationError('email', 'register')): ?>
+                    <span class="alert alert-danger form-control" role="alert">
+                      <?= getValidationError('email', 'register'); ?>
+                      <?php unset($_SESSION['errors']['register']['email']); ?>
+                    </span>
                   <?php endif; ?>
                   <div class="input-group input-group-outline mb-3">
                     <input type="password" class="form-control" name="password" placeholder="Password">
                   </div>
-                  <?php if (isset($_SESSION['errors']['register']['password'])): ?>
-                    <?php foreach ($_SESSION['errors']['register']['password'] as $message): ?>
-                      <span class="alert alert-danger form-control" role="alert">
-                        <?php echo htmlspecialchars($message); ?>
-                      </span>
-                    <?php endforeach; ?>
+                  <?php if (getValidationError('password', 'register')): ?>
+                    <span class="alert alert-danger form-control" role="alert">
+                      <?= getValidationError('password', 'register'); ?>
+                      <?php unset($_SESSION['errors']['register']['password']); ?>
+                    </span>
                   <?php endif; ?>
                   <div class="input-group input-group-outline mb-3">
                     <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password">
                   </div>
-                  <?php if (isset($_SESSION['errors']['register']['password_confirmation'])): ?>
-                    <?php foreach ($_SESSION['errors']['register']['password_confirmation'] as $message): ?>
-                      <span class="alert alert-danger form-control" role="alert">
-                        <?php echo htmlspecialchars($message); ?>
-                      </span>
-                    <?php endforeach; ?>
-                    <?php unset($_SESSION['errors']['register']); ?>
+                  <?php if (getValidationError('password_confirmation', 'register')): ?>
+                    <span class="alert alert-danger form-control" role="alert">
+                      <?= getValidationError('password_confirmation', 'register'); ?>
+                      <?php unset($_SESSION['errors']['register']['password_confirmation']); ?>
+                    </span>
                   <?php endif; ?>
                   <div class="form-check form-check-info text-start ps-0">
                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
