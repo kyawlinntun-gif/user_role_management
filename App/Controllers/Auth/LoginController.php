@@ -46,13 +46,13 @@ class LoginController
       exit;
     }
 
-    $stmt = $this->db->prepare("SELECT user_id, email, password, role_name FROM users LEFT JOIN roles ON users.user_id = roles.role_id WHERE email = :email");
+    $stmt = $this->db->prepare("SELECT user_id, name, email, password, role_name FROM users LEFT JOIN roles ON users.user_id = roles.role_id WHERE email = :email");
     $stmt->execute(['email' => $request->get('email')]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user && password_verify($request->get('password'), $user['password'])) {
-      session_start();
       $_SESSION['user_id'] = $user['user_id'];
+      $_SESSION['user_name'] = $user['name'];
       $_SESSION['user_email'] = $user['email'];
       $_SESSION['user_role'] = $user['role_name'];
       header("location: /");

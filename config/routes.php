@@ -15,14 +15,21 @@ return [
             'middleware' => 'GuestMiddleware'
         ],
         '/register' => [
-            'action' => 'App\\Controllers\\Auth\\RegisterController@showRegisterForm'
+            'action' => 'App\\Controllers\\Auth\\RegisterController@showRegisterForm',
+            'middleware' => 'RedirectIfAuthenticate'
         ],
         '/admin' => [
             'action' => 'App\Controllers\\Admin\\HomeController@index',
             'middleware' => [
                 'RoleMiddleware' => ['admin']
             ]
-        ]
+        ],
+        '/admin/profile' => [
+            'action' => 'App\\Controllers\\Admin\\HomeController@profile',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ],
     ],
     'POST' => [
         '/login' => [

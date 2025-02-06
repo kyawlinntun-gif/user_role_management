@@ -2,7 +2,7 @@
 namespace App\Controllers\Auth;
 
 use App\Core\Request;
-use App\models\User;
+use App\Models\User;
 use App\Validator\Validator;
 
 class RegisterController
@@ -49,10 +49,10 @@ class RegisterController
     }
     // Create a new user
     $user = new User();
-    $user->name = $name;
+    $user->name = htmlspecialchars($name);
     $user->email = $email;
     $user->password = password_hash($request->get('password'), PASSWORD_BCRYPT);
-    $user->role_id = 2;
+    $user->role_id = 3;
     $user->save();
     header("location: /login");
     exit();
