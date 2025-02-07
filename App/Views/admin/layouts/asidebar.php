@@ -18,7 +18,13 @@
       <li class="nav-item">
         <a class="nav-link <?= (strpos($_SERVER['REQUEST_URI'], '/admin/users') === 0) ? 'active bg-gradient-dark text-white' : 'text-dark'; ?>" href="/admin/users">
           <i class="material-symbols-rounded opacity-5">group</i>
-          <span class="nav-link-text ms-1">User</span>
+          <span class="nav-link-text ms-1">Users</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link <?= (strpos($_SERVER['REQUEST_URI'], '/admin/roles') === 0) ? 'active bg-gradient-dark text-white' : 'text-dark'; ?>" href="/admin/roles">
+          <i class="material-symbols-rounded opacity-5">sunny</i>
+          <span class="nav-link-text ms-1">Roles</span>
         </a>
       </li>
       <li class="nav-item">

@@ -41,6 +41,30 @@ return [
             'middleware' => [
                 'RoleMiddleware' => ['admin']
             ]
+        ],
+        '/admin/roles' => [
+            'action' => 'App\\Controllers\\Admin\\RoleController@index',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ],
+        '/admin/roles/create' => [
+            'action' => 'App\\Controllers\\Admin\\RoleController@create',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ],
+        '/admin/roles/{id}' => [
+            'action' => 'App\\Controllers\\Admin\\RoleController@edit',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ],
+        '/admin/roles/{id}/manage' => [
+            'action' => 'App\\Controllers\\Admin\\RoleController@manageRolePermission',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
         ]
     ],
     'POST' => [
@@ -58,6 +82,30 @@ return [
         ],
         '/admin/users/{id}/delete' => [
             'action' => 'App\\Controllers\\Admin\\UserController@destroy',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ],
+        '/admin/roles/create' => [
+            'action' => 'App\\Controllers\\Admin\\RoleController@store',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ],
+        '/admin/roles/{id}' => [
+            'action' => 'App\\Controllers\\Admin\\RoleController@update',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ],
+        '/admin/roles/{id}/delete' => [
+            'action' => 'App\\Controllers\\Admin\\RoleController@destroy',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ],
+        '/admin/roles/{id}/manage' => [
+            'action' => 'App\\Controllers\\Admin\\RoleController@updateRolePermission',
             'middleware' => [
                 'RoleMiddleware' => ['admin']
             ]

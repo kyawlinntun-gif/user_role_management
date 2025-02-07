@@ -28,7 +28,7 @@ class User
       $stmt->bindParam(':role_id', $this->role_id);
       $stmt->execute();
     } catch (PDOException $e) {
-      echo "Error inserting users:" . $e->getMessage();
+      echo "Error inserting users: " . $e->getMessage();
     }
   }
 
