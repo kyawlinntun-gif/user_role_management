@@ -46,7 +46,7 @@ class LoginController
       exit;
     }
 
-    $stmt = $this->db->prepare("SELECT user_id, name, email, password, role_name FROM users LEFT JOIN roles ON users.user_id = roles.role_id WHERE email = :email");
+    $stmt = $this->db->prepare("SELECT user_id, name, email, password, role_name FROM users LEFT JOIN roles ON users.role_id = roles.role_id WHERE email = :email");
     $stmt->execute(['email' => $request->get('email')]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 

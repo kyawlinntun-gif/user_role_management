@@ -30,8 +30,14 @@ return [
                 'RoleMiddleware' => ['admin']
             ]
         ],
-        '/admin/user/{id}' => [
-            'action' => 'App\\Controllers\\Admin\\HomeController@editUser',
+        '/admin/users' => [
+            'action' => 'App\\Controllers\\Admin\\UserController@index',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ],
+        '/admin/users/{id}' => [
+            'action' => 'App\\Controllers\\Admin\\UserController@edit',
             'middleware' => [
                 'RoleMiddleware' => ['admin']
             ]
@@ -43,6 +49,18 @@ return [
         ],
         '/register' => [
             'action' => 'App\\Controllers\\Auth\\RegisterController@register'
+        ],
+        '/admin/users/{id}' => [
+            'action' => 'App\\Controllers\\Admin\\UserController@update',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ],
+        '/admin/users/{id}/delete' => [
+            'action' => 'App\\Controllers\\Admin\\UserController@destroy',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
         ]
     ]
 ];

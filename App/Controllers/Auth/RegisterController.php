@@ -44,7 +44,7 @@ class RegisterController
       $_SESSION['errors']['register'] = $validator->getErrors();
       $_SESSION['register'] = $data;
       // Redirect back to the registration form
-      header("Location: " . '/register');
+      header("Location: " . $_SERVER['HTTP_REFERER']);
       exit;
     }
     // Create a new user
