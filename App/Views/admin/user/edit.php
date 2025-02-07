@@ -17,21 +17,21 @@
                 <?php if(isset($user)): ?>
                 <form role="form" method="POST" action="/admin/users/<?= $user['user_id']; ?>">
                   <div class="input-group input-group-outline mb-3">
-                    <input type="text" class="form-control" placeholder="Name" value="<?= isset($_SESSION['user_edit']['name']) ? $_SESSION['user_edit']['name']  : $user['name']; ?>" name="name">
+                    <input type="text" class="form-control" placeholder="Name" value="<?= isset($_SESSION['user_update']['name']) ? $_SESSION['user_update']['name']  : $user['name']; ?>" name="name">
                   </div>
-                  <?php if (getValidationError('name', 'user_edit')): ?>
+                  <?php if (getValidationError('name', 'user_update')): ?>
                     <span class="alert alert-danger form-control" role="alert">
-                      <?= getValidationError('name', 'user_edit'); ?>
-                      <?php unset($_SESSION['errors']['user_edit']['name']); ?>
+                      <?= getValidationError('name', 'user_update'); ?>
+                      <?php unset($_SESSION['errors']['user_update']['name']); ?>
                     </span>
                   <?php endif; ?>
                   <div class="input-group input-group-outline mb-3">
-                    <input type="email" placeholder="Email" class="form-control" value="<?= isset($_SESSION['user_edit']['email']) ? $_SESSION['user_edit']['email'] : $user['email']; ?>" name="email">
+                    <input type="email" placeholder="Email" class="form-control" value="<?= isset($_SESSION['user_update']['email']) ? $_SESSION['user_update']['email'] : $user['email']; ?>" name="email">
                   </div>
-                  <?php if (getValidationError('email', 'user_edit')): ?>
+                  <?php if (getValidationError('email', 'user_update')): ?>
                     <span class="alert alert-danger form-control" role="alert">
-                      <?= getValidationError('email', 'user_edit'); ?>
-                      <?php unset($_SESSION['errors']['user_edit']['email']); ?>
+                      <?= getValidationError('email', 'user_update'); ?>
+                      <?php unset($_SESSION['errors']['user_update']['email']); ?>
                     </span>
                   <?php endif; ?>
                   <div class="input-group input-group-outline mb-3">
@@ -39,13 +39,13 @@
                       <?php foreach($roles as $role): ?>
                         <option value="<?= $role['role_id']; ?>" <?= (isset($_SESSION['role_id']) ? $_SESSION['role_id'] : $user['role_id']) === $role['role_id'] ? 'selected' : ''; ?>><?= $role['role_name']; ?></option>
                         <?php endforeach; ?>
-                        <?php unset($_SESSION['user_edit']); ?>
+                        <?php unset($_SESSION['user_update']); ?>
                     </select>
                   </div>
-                  <?php if (getValidationError('role_id', 'user_edit')): ?>
+                  <?php if (getValidationError('role_id', 'user_update')): ?>
                     <span class="alert alert-danger form-control" role="alert">
-                      <?= getValidationError('role_id', 'user_edit'); ?>
-                      <?php unset($_SESSION['errors']['user_edit']['role_id']); ?>
+                      <?= getValidationError('role_id', 'user_update'); ?>
+                      <?php unset($_SESSION['errors']['user_update']['role_id']); ?>
                     </span>
                   <?php endif; ?>
                   <div class="text-center">

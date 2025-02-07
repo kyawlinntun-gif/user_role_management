@@ -99,12 +99,12 @@ class Role
 
           $stmt = $this->db->prepare("INSERT INTO role_permissions (role_id, permission_id) VALUES (:role_id, :permission_id)");
           foreach ($permissions as $permission_id) {
-              $stmt->bindParam(':role_id', $role_id, PDO::PARAM_INT);
-              $stmt->bindParam(':permission_id', $permission_id, PDO::PARAM_INT);
-              $stmt->execute();
+            $stmt->bindParam(':role_id', $role_id, PDO::PARAM_INT);
+            $stmt->bindParam(':permission_id', $permission_id, PDO::PARAM_INT);
+            $stmt->execute();
           }
       } catch (PDOException $e) {
-          echo "Error updating role permissions: " . $e->getMessage();
+        echo "Error updating role permissions: " . $e->getMessage();
       }
   }
 

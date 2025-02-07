@@ -31,7 +31,7 @@ class RoleController {
       'role_name' => $request->get('role_name'),
       'description' => $request->get('description')
     ];
-    $rules  = [
+    $rules = [
       'role_name' => 'required|min:3|string|no_special_chars',
       'description' => 'required|min:3|string|no_special_chars'
     ];
@@ -62,8 +62,8 @@ class RoleController {
     ];
     $validator = new Validator($data);
     if(!$validator->validate($rules)) {
-      $_SESSION['errors']['role_create'] = $validator->getErrors();
-      $_SESSION['role_create'] = $data;
+      $_SESSION['errors']['role_update'] = $validator->getErrors();
+      $_SESSION['role_update'] = $data;
       header("Location: " . $_SERVER['HTTP_REFERER']);
       exit();
     }
@@ -89,12 +89,15 @@ class RoleController {
     $permissions = $permission->getAllPermissions();
 
     $role = new Role();
-    $roles = $role->getPermissionsByRole($id);
+    $permissionRole = $role->getPermissionsByRole($id);
     $permissionByRole = [];
-    foreach($roles as $role) {
-      $permissionByRole[] = $role['permission_id'];
+    foreach($permissionRole as $permission) {
+      $permissionByRole[] = $permission['permission_id'];
     }
-    return view('admin.role.manage', ['permissions' => $permissions, 'roles' => $roles, 'permissionByRole' => $permissionByRole]);
+
+    $getRole = $role->getRoleById($id);
+
+    return view('admin.role.manage', ['permissions' => $permissions, 'permissionByRole' => $permissionByRole, 'role' => $getRole]);
   }
 
   public function updateRolePermission($request, $response, $id)

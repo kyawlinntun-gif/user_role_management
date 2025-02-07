@@ -28,6 +28,18 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link <?= (strpos($_SERVER['REQUEST_URI'], '/admin/permissions') === 0) ? 'active bg-gradient-dark text-white' : 'text-dark'; ?>" href="/admin/permissions">
+          <i class="material-symbols-rounded opacity-5">license</i>
+          <span class="nav-link-text ms-1">Permissions</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link <?= (strpos($_SERVER['REQUEST_URI'], '/admin/features') === 0) ? 'active bg-gradient-dark text-white' : 'text-dark'; ?>" href="/admin/features">
+          <i class="material-symbols-rounded opacity-5">list</i>
+          <span class="nav-link-text ms-1">features</span>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link text-dark" href="../pages/tables.html">
           <i class="material-symbols-rounded opacity-5">table_view</i>
           <span class="nav-link-text ms-1">Tables</span>

@@ -14,16 +14,17 @@
           <div class="card-body px-0 pb-2">
             <div class="row">
               <div class="col-md-6 offset-md-2">
-              <form role="form" method="POST" action="/admin/roles/<?= $roles[0]['role_id']; ?>/manage">
-                  <h6><?= ucfirst($roles[0]['role_name']) ?></h6>
-                  <select name="permissions[]" multiple class="form-control">
-                    <?php foreach ($permissions as $permission) : ?>
-                        <option value="<?= $permission['permission_id']; ?>"
-                        <?= in_array($permission['permission_id'], $permissionByRole) ? 'selected' : ''; ?>>
+              <form role="form" method="POST" action="/admin/roles/<?= $role['role_id']; ?>/manage">
+                  <h6><?= ucfirst($role['role_name']); ?></h6>
+                  <?php foreach ($permissions as $permission) : ?>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="permissions[]" value="<?= $permission['permission_id']; ?>" 
+                        <?= in_array($permission['permission_id'], $permissionByRole) ? 'checked' : ''; ?>>
+                        <label class="form-check-label">
                             <?= $permission['permission_name']; ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
+                        </label>
+                    </div>
+                  <?php endforeach; ?>
                   <div>
                     <button type="submit" class="btn btn-lg bg-gradient-dark btn-lg mt-4 mb-0">Save</button>
                   </div>

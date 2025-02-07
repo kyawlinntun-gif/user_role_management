@@ -65,6 +65,28 @@ return [
             'middleware' => [
                 'RoleMiddleware' => ['admin']
             ]
+        ],
+        '/admin/permissions' => [
+            'action' => 'App\\Controllers\\Admin\\PermissionController@index',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ],
+        '/admin/permissions/create' => [
+            'action' => 'App\\Controllers\\Admin\\PermissionController@create',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ],
+        '/admin/permissions/{id}' => [
+            'action' => 'App\\Controllers\\Admin\\PermissionController@edit',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ],
+        '/admin/features' => [
+            'action' => 'App\\Controllers\\Admin\\FeatureController@index',
+            'RoleMiddleware' => ['admin']
         ]
     ],
     'POST' => [
@@ -109,6 +131,24 @@ return [
             'middleware' => [
                 'RoleMiddleware' => ['admin']
             ]
-        ]
+        ],
+        '/admin/permissions/create' => [
+            'action' => 'App\\Controllers\\Admin\\PermissionController@store',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ],
+        '/admin/permissions/{id}' => [
+            'action' => 'App\\Controllers\\Admin\\PermissionController@update',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ],
+        '/admin/permissions/{id}/delete' => [
+            'action' => 'App\\Controllers\\Admin\\PermissionController@destroy',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ],
     ]
 ];

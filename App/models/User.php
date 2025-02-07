@@ -62,7 +62,7 @@ class User
   public function getAllUsers()
   {
     try {
-      $stmt = $this->db->prepare("SELECT user_id, name, email, role_name FROM users LEFT JOIN roles ON users.role_id = roles.role_id");
+      $stmt = $this->db->prepare("SELECT user_id, name, email, role_name, GROUP_CONCAT(permission_name SEPARATOR ', ') as permission_name FROM users JOIN roles ON users.role_id = roles.role_id LEFT JOIN role_permissions ON roles.role_id = role_permissions.role_id LEFT JOIN permissions ON role_permissions.permission_id = permissions.permission_id GROUP BY user_id, name, email, role_name;");
       $stmt->execute();
       $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
       return $users;

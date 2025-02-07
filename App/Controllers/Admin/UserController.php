@@ -38,8 +38,8 @@ class UserController {
     ];
     $validator = new Validator($data);
     if(!$validator->validate($rules)) {
-      $_SESSION['errors']['user_edit'] = $validator->getErrors();
-      $_SESSION['user_edit'] = $data;
+      $_SESSION['errors']['user_update'] = $validator->getErrors();
+      $_SESSION['user_update'] = $data;
       header("Location: " . $_SERVER['HTTP_REFERER']);
       exit();
     }
