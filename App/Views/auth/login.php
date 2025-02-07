@@ -13,6 +13,10 @@
       <div class="row">
         <div class="col-lg-4 col-md-8 col-12 mx-auto">
           <div class="card z-index-0 fadeIn3 fadeInBottom">
+            <?php if(isset($_SESSION['fail'])): ?>
+              <div class="alert alert-danger text-white"><?= $_SESSION['fail']; ?></div>
+              <?php unset($_SESSION['fail']); ?>
+            <?php endif; ?>
             <div class="card-body">
               <form role="form" class="text-start" method="POST" action="/login">
                 <div class="input-group input-group-outline my-3">

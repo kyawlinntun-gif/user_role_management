@@ -17,4 +17,11 @@ class HomeController
     $data = $user->getUserByEmail($email);
     return view('admin.profile.index', ['data' => $data]);
   }
+
+  public function editUser($id)
+  {
+    $user = new User();
+    $getUser = $user->getUserById($id);
+    return view('admin.user.edit', ['user' => $getUser]);
+  }
 }

@@ -44,7 +44,7 @@
                           <span class="badge badge-sm bg-gradient-success"><?= $user['role_name'] ?></span>
                         </td>
                         <td class="align-middle">
-                          <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                          <a href="/admin/user/<?=$user['user_id']?>" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                             Edit
                           </a>
                         </td>

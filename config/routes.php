@@ -30,6 +30,12 @@ return [
                 'RoleMiddleware' => ['admin']
             ]
         ],
+        '/admin/user/{id}' => [
+            'action' => 'App\\Controllers\\Admin\\HomeController@editUser',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ]
     ],
     'POST' => [
         '/login' => [

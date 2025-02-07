@@ -56,4 +56,17 @@ class User
       echo "Error fetching all users: " . $e->getMessage();
     }
   }
+
+  public function getUserById($id)
+  {
+    try {
+      $stmt = $this->db->prepare("SELECT user_id, name, email, role_name FROM users LEFT JOIN roles ON users.role_id = roles.role_id WHERE users.user_id = :id");
+      $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+      $stmt->execute();
+      $user = $stmt->fetch(PDO::FETCH_ASSOC);
+      return $user;
+    } catch (PDOException $e) {
+      echo "Error fetching user by id: " . $e->getMessage();
+    }
+  }
 }

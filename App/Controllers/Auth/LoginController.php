@@ -58,6 +58,8 @@ class LoginController
       header("location: /");
       exit;
     } else {
+      $_SESSION['email'] = $data['email'];
+      $_SESSION['fail'] = "Username or password is wrong!";
       header("location: /login");
       exit;
     }
