@@ -62,7 +62,7 @@ class Role
       $stmt->bindParam(":id", $id);
       $stmt->execute();
     } catch (PDOException $e) {
-      echo "Error inserting roles: " . $e->getMessage();
+      echo "Error inserting role: " . $e->getMessage();
     }
   }
 
@@ -80,7 +80,7 @@ class Role
   public function getPermissionsByRole($id)
   {
     try { 
-      $stmt = $this->db->prepare("SELECT roles.role_id, role_name, permissions.permission_id FROM roles JOIN role_permissions ON roles.role_id = role_permissions.role_id JOIN permissions ON role_permissions.permission_id = permissions.permission_id WHERE roles.role_id = :id");
+      $stmt = $this->db->prepare("SELECT permissions.permission_id FROM roles LEFT JOIN role_permissions ON roles.role_id = role_permissions.role_id LEFT JOIN permissions ON role_permissions.permission_id = permissions.permission_id WHERE roles.role_id = :id");
       $stmt->bindParam(":id", $id, PDO::PARAM_INT);
       $stmt->execute();
       $roles = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -92,20 +92,27 @@ class Role
 
   public function updateRolePermissionsData($role_id, $permissions)
   {
-      try {
-          $stmt = $this->db->prepare("DELETE FROM role_permissions WHERE role_id = :role_id");
+    try {
+        $stmt = $this->db->prepare("DELETE FROM role_permissions WHERE role_id = :role_id");
+        $stmt->bindParam(':role_id', $role_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $stmt = $this->db->prepare("INSERT INTO role_permissions (role_id, permission_id) VALUES (:role_id, :permission_id)");
+        foreach ($permissions as $permission_id) {
           $stmt->bindParam(':role_id', $role_id, PDO::PARAM_INT);
+          $stmt->bindParam(':permission_id', $permission_id, PDO::PARAM_INT);
           $stmt->execute();
-
-          $stmt = $this->db->prepare("INSERT INTO role_permissions (role_id, permission_id) VALUES (:role_id, :permission_id)");
-          foreach ($permissions as $permission_id) {
-            $stmt->bindParam(':role_id', $role_id, PDO::PARAM_INT);
-            $stmt->bindParam(':permission_id', $permission_id, PDO::PARAM_INT);
-            $stmt->execute();
-          }
-      } catch (PDOException $e) {
-        echo "Error updating role permissions: " . $e->getMessage();
-      }
+        }
+    } catch (PDOException $e) {
+      echo "Error updating role permissions: " . $e->getMessage();
+    }
   }
-
 }
+
+
+
+
+
+
+
+

@@ -1,3 +1,7 @@
+<?php
+use App\Models\User;
+$user = new User();
+?>
 <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-radius-lg fixed-start ms-2  bg-white my-2" id="sidenav-main">
   <div class="sidenav-header">
     <i class="fas fa-times p-3 cursor-pointer text-dark opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -15,6 +19,7 @@
           <span class="nav-link-text ms-1">Dashboard</span>
         </a>
       </li>
+      <?php if ($user->hasAnyRole(['admin'])): ?>
       <li class="nav-item">
         <a class="nav-link <?= (strpos($_SERVER['REQUEST_URI'], '/admin/users') === 0) ? 'active bg-gradient-dark text-white' : 'text-dark'; ?>" href="/admin/users">
           <i class="material-symbols-rounded opacity-5">group</i>
@@ -36,13 +41,14 @@
       <li class="nav-item">
         <a class="nav-link <?= (strpos($_SERVER['REQUEST_URI'], '/admin/features') === 0) ? 'active bg-gradient-dark text-white' : 'text-dark'; ?>" href="/admin/features">
           <i class="material-symbols-rounded opacity-5">list</i>
-          <span class="nav-link-text ms-1">features</span>
+          <span class="nav-link-text ms-1">Features</span>
         </a>
       </li>
+      <?php endif; ?>
       <li class="nav-item">
-        <a class="nav-link text-dark" href="../pages/tables.html">
-          <i class="material-symbols-rounded opacity-5">table_view</i>
-          <span class="nav-link-text ms-1">Tables</span>
+        <a class="nav-link <?= (strpos($_SERVER['REQUEST_URI'], '/admin/posts') === 0) ? 'active bg-gradient-dark text-white' : 'text-dark'; ?>" href="/admin/posts">
+          <i class="material-symbols-rounded opacity-5">post</i>
+          <span class="nav-link-text ms-1">Posts</span>
         </a>
       </li>
       <li class="nav-item mt-3">

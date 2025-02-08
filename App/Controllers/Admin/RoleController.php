@@ -33,7 +33,7 @@ class RoleController {
     ];
     $rules = [
       'role_name' => 'required|min:3|string|no_special_chars',
-      'description' => 'required|min:3|string|no_special_chars'
+      'description' => 'required|min:3|string'
     ];
     $validator = new Validator($data);
     if(!$validator->validate($rules)) {

@@ -21,7 +21,7 @@ return [
         '/admin' => [
             'action' => 'App\Controllers\\Admin\\HomeController@index',
             'middleware' => [
-                'RoleMiddleware' => ['admin']
+                'RoleMiddleware' => ['admin', 'editor']
             ]
         ],
         '/admin/profile' => [
@@ -86,8 +86,46 @@ return [
         ],
         '/admin/features' => [
             'action' => 'App\\Controllers\\Admin\\FeatureController@index',
-            'RoleMiddleware' => ['admin']
-        ]
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ],
+        '/admin/features/create' => [
+            'action' => 'App\\Controllers\\Admin\\FeatureController@create',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ],
+        '/admin/features/{id}' => [
+            'action' => 'App\\Controllers\\Admin\\FeatureController@edit',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ],
+        '/admin/features/{id}/manage' => [
+            'action' => 'App\\Controllers\\Admin\\FeatureController@manageFeaturePermission',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ],
+        '/admin/posts' => [
+            'action' => 'App\\Controllers\\Admin\\PostController@index',
+            'middleware' => [
+                'RoleMiddleware' => ['admin', 'editor']
+            ]
+        ],
+        '/admin/posts/create' => [
+            'action' => 'App\\Controllers\\Admin\\PostController@create',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ],
+        '/admin/posts/{id}' => [
+            'action' => 'App\\Controllers\\Admin\\PostController@edit',
+            'middleware' => [
+                'RoleMiddleware' => ['admin', 'editor']
+            ]
+        ],
     ],
     'POST' => [
         '/login' => [
@@ -146,6 +184,48 @@ return [
         ],
         '/admin/permissions/{id}/delete' => [
             'action' => 'App\\Controllers\\Admin\\PermissionController@destroy',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ],
+        '/admin/features/create' => [
+            'action' => 'App\\Controllers\\Admin\\FeatureController@store',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ],
+        '/admin/features/{id}' => [
+            'action' => 'App\\Controllers\\Admin\\FeatureController@update',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ],
+        '/admin/features/{id}/delete' => [
+            'action' => 'App\\Controllers\\Admin\\FeatureController@destroy',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ],
+        '/admin/features/{id}/manage' => [
+            'action' => 'App\\Controllers\\Admin\\FeatureController@updateFeaturePermission',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ],
+        '/admin/posts/create' => [
+            'action' => 'App\\Controllers\\Admin\\PostController@store',
+            'middleware' => [
+                'RoleMiddleware' => ['admin']
+            ]
+        ],
+        '/admin/posts/{id}' => [
+            'action' => 'App\\Controllers\\Admin\\PostController@update',
+            'middleware' => [
+                'RoleMiddleware' => ['admin', 'editor']
+            ]
+        ],
+        '/admin/posts/{id}/delete' => [
+            'action' => 'App\\Controllers\\Admin\\PostController@destroy',
             'middleware' => [
                 'RoleMiddleware' => ['admin']
             ]

@@ -94,4 +94,24 @@ class User
       echo "Error fetching user by id: " . $e->getMessage();
     }
   }
+
+  public function hasAnyRole(array $roles)
+  {
+    return isset($_SESSION['user_role']) && in_array($_SESSION['user_role'], $roles);
+  }
+
+  public function hasAnyPermission(array $permissions)
+  {
+    if (!isset($_SESSION['user_id'])) {
+      return false;
+    }
+    // Get user permissions from the database
+    $stmt = $this->db->prepare("SELECT permissions.permission_name FROM permissions JOIN role_permissions ON permissions.permission_id = role_permissions.permission_id JOIN roles ON role_permissions.role_id = roles.role_id JOIN users ON users.role_id = roles.role_id WHERE users.user_id = :user_id");
+    $stmt->bindParam(":user_id", $_SESSION['user_id'], PDO::PARAM_INT);
+    $stmt->execute();
+    $userPermissions = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+    // Check if any of the given permissions exist in the user's permissions
+    return !empty(array_intersect($permissions, $userPermissions));
+  }
 }

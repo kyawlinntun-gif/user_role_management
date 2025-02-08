@@ -1,8 +1,13 @@
 <?php
 namespace App\Controllers;
+
+use App\Models\Post;
+
 class HomeController {
     public function index()
     {
-        return view('home');
+        $post = new Post();
+        $posts = $post->getAllPosts();
+        return view('home', ['posts' => $posts]);
     }
 }

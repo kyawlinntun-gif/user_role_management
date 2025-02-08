@@ -18,4 +18,9 @@ class Request
   {
       return isset($_POST[$key]) ? $_POST[$key] : null;
   }
+
+  public function file($key)
+  {
+    return isset($_FILES[$key]) && $_FILES[$key]['error'] === 0 ? $_FILES[$key] : null;
+  }
 }

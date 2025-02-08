@@ -65,6 +65,25 @@ class Validator
           $this->addError($field, "This field must not contain special characters.");
         }
         break;
+      case 'image_type':
+        if(!isset($value['tmp_name']) || empty($value['tmp_name'])) {
+          break;
+        }
+        $allowedTypes = explode(',', $param);
+        $extension = strtolower(pathinfo($value['name'], PATHINFO_EXTENSION));
+        if(!in_array($extension, $allowedTypes)) {
+          $this->addError($field, "This file type must not be allowed.");
+        }
+        break;
+      case 'image_size':
+        if (!isset($value['tmp_name']) || empty($value['tmp_name'])) {
+          break;
+        }
+        $maxSize = (int) $param * 1024 * 1024;
+        if ($value['size'] > $maxSize) {
+          $this->addError($field, "This file type must not be exceed {$param} MB.");
+        }
+        break;
       default:
         break;
     }

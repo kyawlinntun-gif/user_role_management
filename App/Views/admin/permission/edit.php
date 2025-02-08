@@ -35,7 +35,7 @@
                     </span>
                   <?php endif; ?>
                   <div>
-                    <button type="submit" class="btn btn-lg bg-gradient-dark btn-lg mt-4 mb-0">Save</button>
+                    <button type="submit" class="btn btn-lg bg-gradient-dark btn-lg mt-4 mb-0">Update</button>
                   </div>
               </form>
               </div>

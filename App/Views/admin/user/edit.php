@@ -49,7 +49,7 @@
                     </span>
                   <?php endif; ?>
                   <div class="text-center">
-                    <button type="submit" class="btn btn-lg bg-gradient-dark btn-lg w-100 mt-4 mb-0">Edit</button>
+                    <button type="submit" class="btn btn-lg bg-gradient-dark btn-lg w-100 mt-4 mb-0">Update</button>
                   </div>
                 </form>
                 <?php endif; ?>
